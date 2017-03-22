@@ -17,7 +17,7 @@ $ip_address_long = ip2long($ip_address);
 
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
-$result_set = pg_fetch_all($sql);
+$result_set = pg_fetch_all($result);
 print_r($result_set);
 $status_message = "";
 if(count($result_set) == 0){

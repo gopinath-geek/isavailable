@@ -14,6 +14,19 @@ $result = pg_query($db, $sql);
 
 $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
 $ip_address_long = ip2long($ip_address);
+
+$sql = 'select count(*) as is_ip_exist from isavailable where ip_address='.ip2long($ipaddress);
+$result = pg_query($sql);
+$result_set = pg_fetch_all($sql);
+$status_message = "";
+if(count($result_set) == 0){
+      $status_message = "Occupy";
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+}else{
+       $status_message = "Wait";
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+}
+
 if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
@@ -30,15 +43,5 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       }
 }
 
-$sql = 'select count(*) as is_ip_exist from isavailable where ip_address='.$ipaddress;
-$result = pg_query($sql);
-$result_set = pg_fetch_all($sql);
-$status_message = "";
-if(count($result_set) == 0){
-      $status_message = "Occupy";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
-}else{
-       $status_message = "Wait";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
-}
+
 pg_close($db);

@@ -16,7 +16,7 @@ $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('
 $ip_address_long = ip2long($ip_address);
 
 $sql = 'select * from isavailable';
-$result = pg_query($sql);
+$result = pg_query($db, $sql);
 $result_set = pg_fetch_all($sql);
 print_r($result_set);
 $status_message = "";

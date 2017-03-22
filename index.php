@@ -12,10 +12,6 @@ if ($stat === PGSQL_CONNECTION_OK) {
 $sql = 'create table if not exists isavailable(ip_address varchar(50) primary key, status varchar(1) not null)';
 $result = pg_query($db, $sql);
 
-if(!$result){
-      echo pg_last_error($db);
-}else{
-      echo "Table created successfully";
-}
-
+$ip = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
+echo $ip;
 pg_close($db);

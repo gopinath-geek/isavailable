@@ -9,10 +9,10 @@ if ($stat === PGSQL_CONNECTION_OK) {
       echo 'Connection status bad';
   }
 
-$create_query = 'create table isavailable(ip_address varchar(50) primary key, status varchar(1) not null)';
-$create_query_exec = pg_query($db, "create_table");
+$sql = 'create table isavailable(ip_address varchar(50) primary key, status varchar(1) not null)';
+$result = query_exec($db, $sql);
 
-if(!$create_query_exec){
+if(!$result){
       echo pg_last_error($db);
 }else{
       echo "Table created successfully";

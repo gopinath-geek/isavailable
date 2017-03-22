@@ -18,7 +18,10 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
             $sql = 'insert into isavailable values('.$ip_address.', 1)';
-            $result = pg_query($sql);
+            $result = pg_query($db, $sql);
+            if($result === false){
+                  echo "Cannot insert row";
+            }
             
       }else if ($query_string == "Wait"){
             

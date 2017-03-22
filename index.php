@@ -20,7 +20,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             $sql = 'insert into isavailable values('.$ip_address.', 1)';
             $result = pg_query($db, $sql);
             if($result === false){
-                  echo "Cannot insert row";
+                  echo pg_last_error($db);
             }
             
       }else if ($query_string == "Wait"){

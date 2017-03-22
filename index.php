@@ -25,7 +25,7 @@ if($create_query == false){
 
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql ='CREATE TABLE IF NOT EXISTS test (ip_address varchar(50) PRIMARY KEY, availability VARCHAR(1) NOT NULL);';
+      $sql ='CREATE TABLE IF NOT EXISTS test (ip_address varchar(50) PRIMARY KEY, availability VARCHAR(1));';
       $db->exec($sql);
   } catch(PDOException $e) {
       echo $e->getMessage();

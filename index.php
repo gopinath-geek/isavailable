@@ -40,7 +40,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             }
             
       }else if ($query_string == "Wait"){
-            $sql = "delete from isavailable";
+            $sql = "truncate table isavailable";
             $result = pg_query($db, $sql);
       }
 }

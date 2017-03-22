@@ -20,9 +20,10 @@ $result_set = pg_fetch_all($sql);
 $status_message = "";
 if(count($result_set) == 0){
       $status_message = "Occupy";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-primary" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
-      
+       $status_message = "Wait";
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }
 
 

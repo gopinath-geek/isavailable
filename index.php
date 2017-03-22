@@ -15,7 +15,7 @@ $result = pg_query($db, $sql);
 $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
 $ip_address_long = ip2long($ip_address);
 
-$sql = 'select count(*) as is_ip_exist from isavailable where ip_address='.ip2long($ipaddress);
+$sql = 'select * from isavailable';
 $result = pg_query($sql);
 $result_set = pg_fetch_all($sql);
 $status_message = "";

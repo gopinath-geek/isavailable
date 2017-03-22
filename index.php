@@ -10,7 +10,7 @@ if ($stat === PGSQL_CONNECTION_OK) {
   }
 
 $sql = 'create table isavailable(ip_address varchar(50) primary key, status varchar(1) not null)';
-$result = query_exec($db, $sql);
+$result = pg_query($db, $sql);
 
 if(!$result){
       echo pg_last_error($db);

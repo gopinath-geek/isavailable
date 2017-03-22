@@ -12,12 +12,12 @@ $stat = pg_connection_status($db);
 $sql = 'create table if not exists isavailable(ip_address varchar(50) primary key, status varchar(1) not null)';
 $result = pg_query($db, $sql);
 
-$ip_address = (string)getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
-
+$ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
+$ip_address_long = ip2long($ip_address);
 if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
-            $sql = "insert into isavailable values($ip_address, '1')";
+            $sql = "insert into isavailable values($ip_address_long, '1')";
             echo $sql;
             $result = pg_query($db, $sql);
             if($result === false){

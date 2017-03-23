@@ -56,7 +56,8 @@ if($affected_rows == 0){
       echo "Affected row".$affected_rows;
       */
       $ip_details = get_ip_from_db();
-      global $success = 2;
+      global $success;
+      $success = 2;
       if($ip_details["ip_address"].$ip_details["timestamp"] == $ip_address_long.$ip_details["timestamp"]){
             //$status_message = "Release";
             display_buttons("Release", "exit.png", "enabled");

@@ -48,7 +48,7 @@ if($affected_rows == 0){
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
-      if(ip2long(get_ip_from_db()) == $ip_address_long)){
+      if(ip2long(get_ip_from_db()) == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "btn-warning", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
@@ -73,5 +73,6 @@ function get_ip_from_db(){
 
 function truncate_table(){
       $sql = "truncate table isavailable";
-      $result = pg_query($db, $sql);}
+      $result = pg_query($db, $sql);
+}
 pg_close($db);

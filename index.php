@@ -72,6 +72,9 @@ if($affected_rows == 0){
 }
 
 function display_buttons($status_message, $image_src, $accessibility){
+      echo "succes flag ".$success;
+      global $success;
+      echo "success flag ".$success;
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
       
       if($success){

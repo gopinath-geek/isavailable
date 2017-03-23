@@ -72,6 +72,9 @@ function display_buttons($status_message, $image_src, $accessibility){
                           </button>
                           <h4>'.$status_message.'</h4>
                       </form>
+                      <a class="btn btn-warning" href="http://isavailable.herokuapp.com/">
+                        <img src="'.$image_url_prefix.'refresh.png">
+                      </a>
                   </div>
               </div>
           </div>

@@ -50,9 +50,10 @@ if($affected_rows == 0){
       echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
       $sql = 'select * from isavailable where ip_address='.ip2long($ip_address);
+      echo $sql;
       $result = pg_query($db, $sql);
       $affected_rows = pg_affected_rows($result);
-      if($affected_rows){
+      if($affected_rows == 1){
             $status_message = "Release";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{

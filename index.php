@@ -46,8 +46,8 @@ $alert_visibility_danger = "hidden";
 //echo "affected rows ".$affected_rows;
 if($affected_rows == 0){
       //$status_message = "Occupy";
-      $alert_visibility_success = "";
-      $alert_visibility_danger = "hidden";
+      //$alert_visibility_success = "";
+      //$alert_visibility_danger = "hidden";
       display_buttons("Occupy", "free.png", "enabled");
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
@@ -60,8 +60,8 @@ if($affected_rows == 0){
             display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
-            $alert_visibility_success = "hidden";
-            $alert_visibility_danger = "";
+            //$alert_visibility_success = "hidden";
+            //$alert_visibility_danger = "";
             //$status_message = "Wait";
             display_buttons("Wait", "wait.png", "disabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';

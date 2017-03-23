@@ -48,13 +48,13 @@ if($affected_rows == 0){
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
-       $sql = 'select ip_address from isavailable';
+      $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
       $result_set = pg_fetch_all($result);
-      echo $result_set[0]["ip_address"];
+      $this_ip = $result_set[0]["ip_address"];
       
       echo "-".$ip_address_long;
-      if(ip2long(get_ip_from_db()) == $ip_address_long){
+      if(ip2long($this_ip) == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "btn-warning", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';

@@ -26,6 +26,9 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       if ($query_string == "Occupy"){
             $sql = "insert into isavailable values($ip_address_long, time(), '1')";
             $result = pg_query($db, $sql);
+            if($result === false){
+                  echo pg_last_error();
+            }
       }else if ($query_string == "Release"){
             $ip_details = get_ip_from_db();
             if($ip_details["ip_address"].$ip_details["timestamp"] == $ip_address_long.$ip_details["timestamp"] ){

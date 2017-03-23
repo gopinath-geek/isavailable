@@ -19,7 +19,7 @@ $result = pg_query($db, $sql);
 $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
 $ip_address_long = ip2long($ip_address);
 
-echo $ip_address;
+//echo $ip_address;
 
 if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
@@ -28,7 +28,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             $sql = "insert into isavailable values($ip_address_long, $time, '1')";
             $result = pg_query($db, $sql);
             if($result === false){
-                  echo pg_last_error();
+                  //echo pg_last_error();
             }
       }else if ($query_string == "Release"){
             $ip_details = get_ip_from_db();
@@ -41,7 +41,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
-echo "affected rows ".$affected_rows;
+//echo "affected rows ".$affected_rows;
 if($affected_rows == 0){
       //$status_message = "Occupy";
       display_buttons("Occupy", "free.png", "enabled");
@@ -66,7 +66,7 @@ function display_buttons($status_message, $image_src, $accessibility){
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
       echo '<p style="margin-top:20px;"></p>
       <div class="container">
-          <div class="well"><div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action.</div></div>
+          <div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action.</div>
           <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
               <div class="panel panel-info">
                   <div class="panel-body text-center">

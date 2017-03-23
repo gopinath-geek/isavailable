@@ -29,14 +29,9 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
                   $status_message = "Wait";
             }
             
-      }else if ($query_string == "Wait" || $query_string == "Release"){
-            $sql = "truncate table isavailable";
-            $result = pg_query($db, $sql);
-            
-            if($result === false){
-                  echo pg_last_error($db);
-            }else{
-                  $status_message = "Occupy";
+      }else if ($query_string == "Release"){
+            if(get_ip_from_db() == ip2long($ip_address) ){
+                  truncate_table();
             }
       }
 }
@@ -50,11 +45,6 @@ if($affected_rows == 0){
       display_buttons("Occupy", "btn-success", "enabled");
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
-      $sql = 'select ip_address from isavailable';
-      $result = pg_query($db, $sql);
-      $result_set = pg_fetch_all($result);
-      $this_ip = $result_set[0]["ip_address"];
-      
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
@@ -72,4 +62,16 @@ if($affected_rows == 0){
 function display_buttons($status_message, $class_name, $accessible){
       echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
 }
+
+function get_ip_from_db(){
+      $sql = 'select ip_address from isavailable';
+      $result = pg_query($db, $sql);
+      $result_set = pg_fetch_all($result);
+      return $result_set[0]["ip_address"];
+      
+}
+
+function truncate_table(){
+      $sql = "truncate table isavailable";
+      $result = pg_query($db, $sql);}
 pg_close($db);

@@ -48,6 +48,7 @@ if($affected_rows == 0){
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
+      echo get_ip_from_db()."-".$ip_address_long;
       if(ip2long(get_ip_from_db()) == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "btn-warning", "enabled");

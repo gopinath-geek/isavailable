@@ -6,9 +6,6 @@
 </html>
 
 <?php
-
-truncate_table();
-
 $status_message = "";
 
 $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
@@ -33,9 +30,9 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             }
             
       }else if ($query_string == "Release"){
-            //if(get_ip_from_db() == ip2long($ip_address) ){
+            if(ip2long(get_ip_from_db()) == ip2long($ip_address) ){
                   truncate_table();
-            //}
+            }
       }
 }
 
@@ -53,13 +50,8 @@ if($affected_rows == 0){
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
-      $sql = 'select ip_address from isavailable';
-      $result = pg_query($db, $sql);
-      $result_set = pg_fetch_all($result);
-      $this_ip = $result_set[0]["ip_address"];
-      
       echo "-".$ip_address_long;
-      if(ip2long($this_ip) == $ip_address_long){
+      if(ip2long(get_ip_from_db()) == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "btn-warning", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
@@ -75,6 +67,7 @@ function display_buttons($status_message, $class_name, $accessible){
 }
 
 function get_ip_from_db(){
+      $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
       $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
       $result_set = pg_fetch_all($result);

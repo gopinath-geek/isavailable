@@ -2,6 +2,7 @@
       <head>
             <title>Is Available ? || A Techie Cat Product</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
 </html>
 
@@ -21,14 +22,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
             $sql = "insert into isavailable values($ip_address_long, '1')";
-            echo $sql;
             $result = pg_query($db, $sql);
-            if($result === false){
-                  echo pg_last_error($db);
-            }else{
-                  $status_message = "Wait";
-            }
-            
       }else if ($query_string == "Release"){
             if(get_ip_from_db() == ip2long($ip_address) ){
                   truncate_table();

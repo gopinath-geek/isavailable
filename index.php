@@ -29,7 +29,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
                   $status_message = "Wait";
             }
             
-      }else if ($query_string == "Wait"){
+      }else if ($query_string == "Wait" || $query_string == "Release"){
             $sql = "truncate table isavailable";
             $result = pg_query($db, $sql);
             

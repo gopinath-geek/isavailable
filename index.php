@@ -70,6 +70,6 @@ if($affected_rows == 0){
 }
 
 function display_buttons($status_message, $class_name){
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn'.$class_name.'" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
 }
 pg_close($db);

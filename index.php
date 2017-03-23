@@ -14,20 +14,7 @@ $result = pg_query($db, $sql);
 
 $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
 $ip_address_long = ip2long($ip_address);
-
-$sql = 'select * from isavailable';
-$result = pg_query($db, $sql);
-$affected_rows = pg_affected_rows($result);
-
-$status_message = "";
-if($affected_rows == 0){
-      $status_message = "Occupy";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
-}else{
-       $status_message = "Wait";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
-}
-
+update_button();
 if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
@@ -36,6 +23,8 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             $result = pg_query($db, $sql);
             if($result === false){
                   echo pg_last_error($db);
+            }else{
+                  update_button();
             }
             
       }else if ($query_string == "Wait"){
@@ -44,9 +33,24 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             
             if($result === false){
                   echo pg_last_error($db);
+            }else{
+                  update_button();
             }
       }
 }
 
+function update_button(){
+      $sql = 'select * from isavailable';
+      $result = pg_query($db, $sql);
+      $affected_rows = pg_affected_rows($result);
+      $status_message = "";
+      if($affected_rows == 0){
+            $status_message = "Occupy";
+            echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+      }else{
+             $status_message = "Wait";
+            echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+      }
+}
 
 pg_close($db);

@@ -80,6 +80,7 @@ if($affected_rows == 0){
 function display_buttons($status_message, $image_src, $accessibility){
       global $success;
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
+      echo '<div class="container"><div class="col-xs-12">';
       if($success == 1){
             echo '<div class="container"><div class="alert alert-success"><strong>Yeah ! It is available</strong></div></div>';
       }else if($success == 0){
@@ -87,6 +88,7 @@ function display_buttons($status_message, $image_src, $accessibility){
       }else if($success == 2){
             echo '<div class="alert alert-warning"><strong>Make way for others</strong></div>';
       }
+      echo '</div></div>';
       
       echo '<p style="margin-top:20px;"></p>
       <div class="container">

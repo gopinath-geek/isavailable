@@ -17,11 +17,10 @@ $ip_address_long = ip2long($ip_address);
 
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
-$result_set = pg_fetch_all($result);
-print_r($result_set);
-echo "Number of rows ".sizeof($result_set);
+$affected_rows = pg_affected_rows($result);
+
 $status_message = "";
-if(count($result_set) == 1){
+if($affected_rows == 0){
       $status_message = "Occupy";
       echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{

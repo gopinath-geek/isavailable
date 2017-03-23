@@ -9,8 +9,7 @@
 <?php
 //truncate_table();
 $status_message = "";
-$alert_visibility_success = "hidden";
-$alert_visibility_danger = "hidden";
+$success = true;
 
 $image_url_prefix = "https://raw.githubusercontent.com/gopinath-geek/isavailable/master/";
 $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
@@ -62,6 +61,7 @@ if($affected_rows == 0){
             display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
+            $success = false;
             //$alert_visibility_success = "hidden";
             //$alert_visibility_danger = "";
             //$status_message = "Wait";
@@ -73,8 +73,8 @@ if($affected_rows == 0){
 function display_buttons($status_message, $image_src, $accessibility){
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
       
-      if(1){
-            echo '<div class="alert alert-success"><strong>Yeah ! It is available</strong></div>';
+      if($success){
+            echo '<div class="container"><div class="alert alert-success"><strong>Yeah ! It is available</strong></div></div>';
       }else{
             echo '<div class="alert alert-danger"><strong>Oh, No ! It is not available</strong></div>';
       }

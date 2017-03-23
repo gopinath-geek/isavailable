@@ -47,7 +47,7 @@ $affected_rows = pg_affected_rows($result);
 
 if($affected_rows == 0){
       //$status_message = "Occupy";
-      display_buttons("Occupy", "btn-success");
+      display_buttons("Occupy", "btn-success", "enabled");
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
       $sql = 'select ip_address from isavailable';
@@ -60,16 +60,16 @@ if($affected_rows == 0){
       */
       if($this_ip == ip2long($ip_address)){
             //$status_message = "Release";
-            display_buttons("Release", "btn-warning");
+            display_buttons("Release", "btn-warning", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
             //$status_message = "Wait";
-            display_buttons("Wait", "btn-danger");
+            display_buttons("Wait", "btn-danger", "disabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
       }
 }
 
-function display_buttons($status_message, $class_name){
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
+function display_buttons($status_message, $class_name, $accessible){
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
 }
 pg_close($db);

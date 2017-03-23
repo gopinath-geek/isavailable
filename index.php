@@ -41,9 +41,13 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
+$alert_visibility_success = "hidden";
+$alert_visibility_danger = "hidden";
 //echo "affected rows ".$affected_rows;
 if($affected_rows == 0){
       //$status_message = "Occupy";
+      $alert_visibility_success = "";
+      $alert_visibility_danger = "hidden";
       display_buttons("Occupy", "free.png", "enabled");
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
@@ -56,6 +60,8 @@ if($affected_rows == 0){
             display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
+            $alert_visibility_success = "hidden";
+            $alert_visibility_danger = "";
             //$status_message = "Wait";
             display_buttons("Wait", "wait.png", "disabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
@@ -66,7 +72,8 @@ function display_buttons($status_message, $image_src, $accessibility){
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
       echo '<p style="margin-top:20px;"></p>
       <div class="container">
-          <div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action.</div>
+          <div class="alert alert-success" '.$alert_visibility_success.'><strong>Yeah ! It is available</strong></div>
+          <div class="alert alert-danger" '.$alert_visibility_danger.'><strong>Oh, No !It is nat available</strong></div>
           <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
               <div class="panel panel-info">
                   <div class="panel-body text-center">

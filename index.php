@@ -46,8 +46,9 @@ $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
 
 if($affected_rows == 0){
-      $status_message = "Occupy";
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+      //$status_message = "Occupy";
+      display_buttons("Occupy", "btn-success");
+      //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
       $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
@@ -58,11 +59,17 @@ if($affected_rows == 0){
       echo "Affected row".$affected_rows;
       */
       if($this_ip == ip2long($ip_address)){
-            $status_message = "Release";
-            echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
+            //$status_message = "Release";
+            display_buttons("Release", "btn-warning");
+            //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
-            $status_message = "Wait";
-            echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
+            //$status_message = "Wait";
+            display_buttons("Wait", "btn-danger");
+            //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
       }
+}
+
+function display_buttons($status_message, $class_name){
+      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn'.$class_name.'" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
 }
 pg_close($db);

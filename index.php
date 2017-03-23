@@ -9,7 +9,7 @@
 <?php
 //truncate_table();
 $status_message = "";
-$success = true;
+$success = 1;
 
 $image_url_prefix = "https://raw.githubusercontent.com/gopinath-geek/isavailable/master/";
 $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
@@ -56,13 +56,14 @@ if($affected_rows == 0){
       echo "Affected row".$affected_rows;
       */
       $ip_details = get_ip_from_db();
+      global $success = 2;
       if($ip_details["ip_address"].$ip_details["timestamp"] == $ip_address_long.$ip_details["timestamp"]){
             //$status_message = "Release";
             display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
             global $success;
-            $success = false;
+            $success = 0;
             //$alert_visibility_success = "hidden";
             //$alert_visibility_danger = "";
             //$status_message = "Wait";
@@ -74,11 +75,12 @@ if($affected_rows == 0){
 function display_buttons($status_message, $image_src, $accessibility){
       global $success;
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
-      
-      if($success){
+      if($success == 1){
             echo '<div class="container"><div class="alert alert-success"><strong>Yeah ! It is available</strong></div></div>';
-      }else{
+      }else if($success == 0){
             echo '<div class="alert alert-danger"><strong>Oh, No ! It is not available</strong></div>';
+      }else if($success == 2){
+            echo '<div class="alert alert-warning"><strong>Make way for others</strong></div>';
       }
       
       echo '<p style="margin-top:20px;"></p>

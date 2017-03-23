@@ -34,8 +34,6 @@ $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
 
-echo "affected rows ".$affected_rows;
-
 if($affected_rows == 0){
       //$status_message = "Occupy";
       display_buttons("Occupy", "free.png", "enabled");
@@ -44,7 +42,6 @@ if($affected_rows == 0){
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
-      echo "-".$ip_address_long;
       if(get_ip_from_db() == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "exit.png", "enabled");

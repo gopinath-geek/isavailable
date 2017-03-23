@@ -1,15 +1,17 @@
 <html>
       <head>
-            <title>Is Available ? || A Techie Cat Product</title>
+            <title>Is Available ?</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
  <body>
        <div class="container">
-             <div class="col-xs-10 col-xs-push-1">
+             <div class="col-xs-10 col-xs-push-1 text-center">
                    <label class="label label-danger">It's Beta !</label>
+                   <p></p>
              </div>
        </div>
+       
 <?php
 //truncate_table();
 $status_message = "";

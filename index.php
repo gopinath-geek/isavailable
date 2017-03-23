@@ -61,7 +61,8 @@ if($affected_rows == 0){
             display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
-            global $success = false;
+            global $success;
+            $success = false;
             //$alert_visibility_success = "hidden";
             //$alert_visibility_danger = "";
             //$status_message = "Wait";

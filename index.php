@@ -30,7 +30,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             }
             
       }else if ($query_string == "Release"){
-            if(ip2long(get_ip_from_db()) == ip2long($ip_address) ){
+            if(get_ip_from_db() == ip2long($ip_address) ){
                   truncate_table();
             }
       }
@@ -51,7 +51,7 @@ if($affected_rows == 0){
       echo "Affected row".$affected_rows;
       */
       echo "-".$ip_address_long;
-      if(ip2long(get_ip_from_db()) == $ip_address_long){
+      if(get_ip_from_db() == $ip_address_long){
             //$status_message = "Release";
             display_buttons("Release", "btn-warning", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';

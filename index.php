@@ -19,6 +19,8 @@ $result = pg_query($db, $sql);
 $ip_address = getenv('HTTP_CLIENT_IP')?:getenv('HTTP_X_FORWARDED_FOR')?:getenv('HTTP_X_FORWARDED')?:getenv('HTTP_FORWARDED_FOR')?:getenv('HTTP_FORWARDED')?:getenv('REMOTE_ADDR');
 $ip_address_long = ip2long($ip_address);
 
+echo $ip_address;
+
 if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
       $query_string = $_REQUEST['status'];
       if ($query_string == "Occupy"){
@@ -56,15 +58,11 @@ if($affected_rows == 0){
 
 function display_buttons($status_message, $image_src, $accessibility){
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
-      
       echo '<p style="margin-top:20px;"></p>
       <div class="container">
-          <div class="well"><h3>Is Available</h3></div>
+          <div class="well"><div class="alert alert-success"><strong>Success!</strong> Indicates a successful or positive action.</div></div>
           <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
               <div class="panel panel-info">
-                  <div class="panel-heading">
-                      Is Available ?
-                  </div>
                   <div class="panel-body text-center">
                       <form class="form text-center" style="padding:50px;" action="#">
                           <input type="hidden" value="'.$status_message.'" name="status">

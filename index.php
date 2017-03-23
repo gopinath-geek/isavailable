@@ -4,8 +4,12 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
-</html>
-
+ <body>
+       <div class="container">
+             <div class="col-xs-10 col-xs-push-1">
+                   <label class="label label-danger">It's Beta !</label>
+             </div>
+       </div>
 <?php
 //truncate_table();
 $status_message = "";
@@ -119,3 +123,6 @@ function truncate_table(){
       $result = pg_query($db, $sql);
 }
 pg_close($db);
+?>
+</body>
+</html>

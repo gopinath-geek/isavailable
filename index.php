@@ -44,7 +44,7 @@ echo "affected rows ".$affected_rows;
 
 if($affected_rows == 0){
       //$status_message = "Occupy";
-      display_buttons("Occupy", "btn-success", "enabled");
+      display_buttons("Occupy", "free.png", "enabled");
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
       /*$affected_rows = pg_affected_rows($result);
@@ -53,17 +53,37 @@ if($affected_rows == 0){
       echo "-".$ip_address_long;
       if(get_ip_from_db() == $ip_address_long){
             //$status_message = "Release";
-            display_buttons("Release", "btn-warning", "enabled");
+            display_buttons("Release", "exit.png", "enabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
             //$status_message = "Wait";
-            display_buttons("Wait", "btn-danger", "disabled");
+            display_buttons("Wait", "wait.png", "disabled");
             //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
       }
 }
 
-function display_buttons($status_message, $class_name, $accessible){
-      echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
+function display_buttons($status_message, $image_src, $accessibility){
+      //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
+      
+      echo '<p style="margin-top:20px;"></p>
+      <div class="container">
+          <div class="well"><h3>Is Available</h3></div>
+          <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                      Is Available ?
+                  </div>
+                  <div class="panel-body">
+                      <form class="form text-center" style="padding:50px;" action="#">
+                          <button type="submit" class="btn btn-default" '.$accessibility.'>
+                              <img src="'.$image_src.'" style="padding:50px;">
+                          </button>
+                          <h4>'.$status_message.'</h4>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>';
 }
 
 function get_ip_from_db(){

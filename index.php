@@ -52,7 +52,7 @@ if($affected_rows == 0){
       $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
       $result_set = pg_fetch_all($result);
-      print_r($result_set);
+      echo $result_set[0]->ip_address;
       
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;

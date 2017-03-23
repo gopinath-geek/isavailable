@@ -49,17 +49,20 @@ if($affected_rows == 0){
       $status_message = "Occupy";
       echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{
-      $sql = 'select * from isavailable where ip_address='.ip2long($ip_address);
-      echo $sql;
+      $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
-      $affected_rows = pg_affected_rows($result);
+      $result_set = pg_fetch_all($result);
+      print_r($result_set);
+      
+      /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
-      if($affected_rows == 1){
+      */
+      /*if($affected_rows == 1){
             $status_message = "Release";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
             $status_message = "Wait";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
-      }
+      }*/
 }
 pg_close($db);

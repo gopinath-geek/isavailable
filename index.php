@@ -7,7 +7,7 @@
 
 <?php
 $status_message = "";
-
+$image_url_prefix = "https://raw.githubusercontent.com/gopinath-geek/isavailable/master/";
 $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
 $stat = pg_connection_status($db);
 
@@ -76,7 +76,7 @@ function display_buttons($status_message, $image_src, $accessibility){
                   <div class="panel-body">
                       <form class="form text-center" style="padding:50px;" action="#">
                           <button type="submit" class="btn btn-default" '.$accessibility.'>
-                              <img src="'.$image_src.'" style="padding:50px;">
+                              <img src="'.$image_url_prefix.$image_src.'" style="padding:50px;">
                           </button>
                           <h4>'.$status_message.'</h4>
                       </form>

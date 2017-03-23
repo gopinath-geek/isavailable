@@ -37,7 +37,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
-
+echo "affected rows ".$affected_rows;
 if($affected_rows == 0){
       //$status_message = "Occupy";
       display_buttons("Occupy", "free.png", "enabled");

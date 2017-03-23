@@ -52,18 +52,17 @@ if($affected_rows == 0){
       $sql = 'select ip_address from isavailable';
       $result = pg_query($db, $sql);
       $result_set = pg_fetch_all($result);
-      echo $result_set[0];
-      echo $result_set[0]["ip_address"];
+      $this_ip = $result_set[0]["ip_address"];
       
       /*$affected_rows = pg_affected_rows($result);
       echo "Affected row".$affected_rows;
       */
-      /*if($affected_rows == 1){
+      if($this_ip == ip2long($ip_address)){
             $status_message = "Release";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
       }else{
             $status_message = "Wait";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-danger" name="status" value="'.$status_message.'" disabled>'.$status_message.'</button></form></div>';
-      }*/
+      }
 }
 pg_close($db);

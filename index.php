@@ -30,9 +30,9 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
             }
             
       }else if ($query_string == "Release"){
-            if(get_ip_from_db() == ip2long($ip_address) ){
+            //if(get_ip_from_db() == ip2long($ip_address) ){
                   truncate_table();
-            }
+            //}
       }
 }
 

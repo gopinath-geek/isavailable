@@ -72,10 +72,15 @@ if($affected_rows == 0){
 
 function display_buttons($status_message, $image_src, $accessibility){
       //echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn '.$class_name.'" name="status" value="'.$status_message.'" '.$accessible.'>'.$status_message.'</button></form></div>';
+      
+      if(1){
+            echo '<div class="alert alert-success"><strong>Yeah ! It is available</strong></div>';
+      }else{
+            echo '<div class="alert alert-danger"><strong>Oh, No ! It is not available</strong></div>';
+      }
+      
       echo '<p style="margin-top:20px;"></p>
       <div class="container">
-          <div class="alert alert-success" '.$alert_visibility_success.'><strong>Yeah ! It is available</strong></div>
-          <div class="alert alert-danger" '.$alert_visibility_success.'><strong>Oh, No !It is nat available</strong></div>
           <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
               <div class="panel panel-info">
                   <div class="panel-body text-center">

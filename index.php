@@ -64,7 +64,7 @@ function display_buttons($status_message, $image_src, $accessibility){
                   <div class="panel-heading">
                       Is Available ?
                   </div>
-                  <div class="panel-body">
+                  <div class="panel-body text-center">
                       <form class="form text-center" style="padding:50px;" action="#">
                           <input type="hidden" value="'.$status_message.'" name="status">
                           <button type="submit" class="btn btn-default" '.$accessibility.'>

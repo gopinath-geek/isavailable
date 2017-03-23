@@ -19,7 +19,7 @@ $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $result_set = pg_fetch_all($result);
 print_r($result_set);
-echo "Number of rows ".count($result_set);
+echo "Number of rows ".sizeof($result_set);
 $status_message = "";
 if(count($result_set) == 1){
       $status_message = "Occupy";

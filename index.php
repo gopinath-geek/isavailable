@@ -53,6 +53,7 @@ if($affected_rows == 0){
       echo $sql;
       $result = pg_query($db, $sql);
       $affected_rows = pg_affected_rows($result);
+      echo "Affected row".$affected_rows;
       if($affected_rows == 1){
             $status_message = "Release";
             echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-warning" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';

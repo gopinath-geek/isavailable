@@ -21,7 +21,7 @@ $result_set = pg_fetch_all($result);
 print_r($result_set);
 echo "Number of rows ".count($result_set);
 $status_message = "";
-if(count($result_set) == 0){
+if(count($result_set) == 1){
       $status_message = "Occupy";
       echo '<div class="col-xs-5 col-xs-push-5"><form action=""><button type="submit" class="btn btn-success" name="status" value="'.$status_message.'">'.$status_message.'</button></form></div>';
 }else{

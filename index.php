@@ -9,6 +9,9 @@
 <?php
 //truncate_table();
 $status_message = "";
+$alert_visibility_success = "hidden";
+$alert_visibility_danger = "hidden";
+
 $image_url_prefix = "https://raw.githubusercontent.com/gopinath-geek/isavailable/master/";
 $db = pg_connect("host=ec2-176-34-113-15.eu-west-1.compute.amazonaws.com port=5432 dbname=d7idvta5j12bu8 user=hbvbxoabwlcwwo password=7fc101a7a3462d275bde95493f6b66a35a17ec874b9a99b5eff263c56b4caabc") or exit("cannot connect db");
 $stat = pg_connection_status($db);
@@ -41,8 +44,7 @@ if(isset($_REQUEST['status']) && !empty($_REQUEST['status'])){
 $sql = 'select * from isavailable';
 $result = pg_query($db, $sql);
 $affected_rows = pg_affected_rows($result);
-$alert_visibility_success = "hidden";
-$alert_visibility_danger = "hidden";
+
 //echo "affected rows ".$affected_rows;
 if($affected_rows == 0){
       //$status_message = "Occupy";
@@ -73,7 +75,7 @@ function display_buttons($status_message, $image_src, $accessibility){
       echo '<p style="margin-top:20px;"></p>
       <div class="container">
           <div class="alert alert-success" '.$alert_visibility_success.'><strong>Yeah ! It is available</strong></div>
-          <div class="alert alert-danger" '.$alert_visibility_danger.'><strong>Oh, No !It is nat available</strong></div>
+          <div class="alert alert-danger" '.$alert_visibility_success.'><strong>Oh, No !It is nat available</strong></div>
           <div class="col-sm-6 col-push-sm-3 col-md-4 col-push-md-4 col-lg-push-4">
               <div class="panel panel-info">
                   <div class="panel-body text-center">
